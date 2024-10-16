@@ -50,8 +50,6 @@ class Crmeb implements Driver
      */
     public function handle(Request $request = null): Response
     {
-        /** @var SystemAdminServices $service */
-        $service = app()->make(SystemAdminServices::class);
         [$payload, $signature, $key] = $request->postMore(['payload/s', 'signature/s', 'key/s'], true);
         if (empty($payload)) {
             return app('json')->fail('payload is empty');

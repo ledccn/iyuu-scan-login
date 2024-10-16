@@ -20,7 +20,7 @@ class Command extends \think\console\Command
      */
     protected function configure()
     {
-        $this->setName('make:trait')
+        $this->setName('make:model:trait')
             ->addArgument('connection', Argument::REQUIRED, "数据库连接名称")
             ->addArgument('table', Argument::OPTIONAL, "完整的数据表名称")
             ->addOption('all', null, Option::VALUE_NONE, '批量生成所有数据表的注释')

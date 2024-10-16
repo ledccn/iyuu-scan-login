@@ -44,8 +44,8 @@ class Service extends \think\Service
     public function boot(Route $route): void
     {
         // 注册路由
-        $route->post('/iyuu/scan/login/:driver', function (Request $request, $driver): Response {
-            /*if ($request->method(true) === 'OPTIONS') {
+        $route->any('/iyuu/scan/login/:driver', function (Request $request, $driver): Response {
+            if ($request->method(true) === 'OPTIONS') {
                 $header = [
                     'Access-Control-Allow-Origin' => '*',
                     'Access-Control-Allow-Headers' => '*',
@@ -54,7 +54,7 @@ class Service extends \think\Service
                     'Access-Control-Allow-Credentials' => 'true'
                 ];
                 return Response::create('ok')->code(200)->header($header);
-            }*/
+            }
 
             // 校验驱动参数
             if (!ctype_alnum($driver)) {
