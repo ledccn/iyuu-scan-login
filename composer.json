@@ -1,0 +1,31 @@
+{
+  "name": "iyuu/scan-login",
+  "description": "爱语飞飞微信扫码登录SDK",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Iyuu\\ScanLogin\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "david",
+      "email": "367013672@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "topthink/framework": ">=6.0",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-ctype": "*"
+  },
+  "extra": {
+    "think": {
+      "services": [
+        "Iyuu\\ScanLogin\\Framework\\ThinkPHP\\Service"
+      ]
+    }
+  }
+}
