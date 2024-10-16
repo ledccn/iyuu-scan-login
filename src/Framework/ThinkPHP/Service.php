@@ -44,7 +44,18 @@ class Service extends \think\Service
     public function boot(Route $route): void
     {
         // 注册路由
-        $route->post('/iyuu/scan/login/:driver', function (Request $request, $driver): Response {
+        $route->any('/iyuu/scan/login/:driver', function (Request $request, $driver): Response {
+            if ($request->method(true) === 'OPTIONS') {
+                $header = [
+                    'Access-Control-Allow-Origin' => '*',
+                    'Access-Control-Allow-Headers' => '*',
+                    'Access-Control-Allow-Methods' => '*',
+                    'Access-Control-Max-Age' => '1728000',
+                    'Access-Control-Allow-Credentials' => 'true'
+                ];
+                return Response::create('ok')->code(200)->header($header);
+            }
+
             // 校验驱动参数
             if (!ctype_alnum($driver)) {
                 return json(['code' => 400, 'msg' => '登录驱动名称只能为字母数字']);
@@ -56,9 +67,9 @@ class Service extends \think\Service
                 return json(['code' => 404, 'msg' => '暂未支持的登录驱动名称']);
             }
 
-            $instance = $app->make($driver);
+            $instance = $app->make($abstract);
             if ($instance instanceof Driver) {
-                return $app->invokeMethod([$instance, 'login']);
+                return $app->invokeMethod([$instance, 'handle']);
             }
             return json(['code' => 500, 'msg' => '登录驱动未实现接口，请联系开发者']);
         });
