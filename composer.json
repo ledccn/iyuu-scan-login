@@ -25,7 +25,10 @@
     "think": {
       "services": [
         "Iyuu\\ScanLogin\\Framework\\ThinkPHP\\Service"
-      ]
+      ],
+      "config": {
+        "iyuu": "src/config.php"
+      }
     }
   }
 }

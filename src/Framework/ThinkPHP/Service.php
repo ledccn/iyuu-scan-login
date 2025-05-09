@@ -73,11 +73,6 @@ class Service extends \think\Service
             }
             return json(['code' => 500, 'msg' => '登录驱动未实现接口，请联系开发者']);
         })->allowCrossDomain();
-
-        // 注册命令
-        $this->commands([
-            Command::class,
-        ]);
     }
 
     /**
